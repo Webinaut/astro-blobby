@@ -1,0 +1,30 @@
+---
+const response = await fetch(Astro.url.origin + '/api/views');
+const views = await response.json();
+---
+
+<div class="views-counter">
+  <p>Page Views: <span class="count">{views.count}</span></p>
+</div>
+
+<style>
+  .views-counter {
+    background: rgba(var(--accent-dark), 66%);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 2rem 0;
+    border: 1px solid rgba(var(--accent-light), 25%);
+  }
+  
+  .count {
+    color: rgb(var(--accent-light));
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+</style>
+
+<script>
+  // Increment the counter when the page loads
+  fetch('/api/views', { method: 'POST' });
+</script>
